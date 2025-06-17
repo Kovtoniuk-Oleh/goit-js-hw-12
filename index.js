@@ -1,0 +1,13 @@
+import{a as f,S as p,i}from"./assets/vendor-BIbrn5sI.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&n(o)}).observe(document,{childList:!0,subtree:!0});function a(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function n(e){if(e.ep)return;e.ep=!0;const t=a(e);fetch(e.href,t)}})();const g="50866984-6402497f149a27b4d4d3393ca",y="https://pixabay.com/api/";async function h(r){try{return(await f.get(y,{params:{key:g,q:r,image_type:"photo",orientation:"horizontal",safesearch:!0}})).data.hits}catch(s){return console.error("Error fetching images:",s),[]}}const u=document.querySelector(".gallery");let l;function v(r){const s=r.map(({webformatURL:a,largeImageURL:n,tags:e,likes:t,views:o,comments:d,downloads:m})=>`
+      <a class="gallery-item" href="${n}">
+        <img src="${a}" alt="${e}" />
+        
+        <div class="image-info">
+          <div class="stat-item"><span class="stat-label"> Likes </span> <span class="stat-value">${t}</span></div>
+          <div class="stat-item"><span class="stat-label"> Views </span> <span class="stat-value">${o}</span></div>
+          <div class="stat-item"><span class="stat-label"> Comments </span> <span class="stat-value">${d}</span></div>
+          <div class="stat-item"><span class="stat-label"> Downloads </span> <span class="stat-value">${m}</span></div>
+        </div>
+      </a>
+    `).join("");u.innerHTML=s,l=new p(".gallery a"),l.refresh()}function L(){u.innerHTML=""}function b(){const r=document.querySelector(".loader");console.log("Loader element:",r),r?r.classList.add("visible"):console.error("Loader element not found!")}function S(){document.querySelector(".loader").classList.remove("visible")}const q=document.querySelector(".form"),c=document.querySelector("input[name='search-text']");q.addEventListener("submit",async r=>{r.preventDefault();const s=c.value.trim();if(!s){i.error({message:"Please enter a search term!"});return}L(),b();try{const a=await h(s);console.log("Fetched images:",a),a.length===0?i.warning({message:"Sorry, there are no images matching your search query. Please try again!"}):v(a)}catch(a){i.error({message:"An error occurred while fetching images. Please try again later."}),console.error("Error fetching images:",a)}finally{S()}c.value=""});
+//# sourceMappingURL=index.js.map
