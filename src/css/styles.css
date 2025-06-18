@@ -101,8 +101,7 @@ body {
 }
 
 .search-btn {
-  border: 1px solid #808080;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 8px 16px;
   width: 91px;
   height: 40px;
@@ -112,11 +111,16 @@ body {
   cursor: pointer;
   box-shadow: 0 0 5px #4e75ff;
   transition: background-color 0.3s, box-shadow 0.3s;
+
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
 }
 
-.search-btn:hover {
-  background-color: #3168e0;
+.search-btn:hover,
+.load-more:hover {
   box-shadow: 0 0 8px #3168e0;
+  background: #6c8cff;
 }
 
 /* Галерея */
@@ -136,6 +140,12 @@ body {
   overflow: hidden;
   border: 1px solid #808080;
   box-sizing: border-box;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.09);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .gallery img {
@@ -144,22 +154,59 @@ body {
   object-fit: cover;
 }
 
-.gallery img:hover {
+/* .gallery img:hover {
   transform: scale(1.044);
-}
+} */
 
 span {
   display: block;
 }
 .stat-label {
-  margin-bottom: 2px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+.stat-value {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
 .image-info {
   display: flex;
   gap: 24px;
   padding: 4px 20px;
-  justify-content: center;
+  justify-content: space-around;
   text-align: center;
+}
+.hidden {
+  display: none;
+}
+.load-more {
+  /* display: block; */
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background: #4e75ff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 5px #4e75ff;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  opacity: 1;
+
+  margin-top: 20px;
+}
+
+.load-more.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Лоадер */
@@ -176,6 +223,10 @@ span {
 
 .loader.visible {
   display: block;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center; /* Центрує кнопку */
 }
 
 @keyframes spin {
